@@ -2,30 +2,32 @@
 #include <stdio.h>
 #include <math.h>
 
-int countDigits(int num) {
-    int count = 0;
-    while (num != 0) {
-        sum += pow(n % 10, (int)log10(n) + 1);
-        num /= 10;
-    }
-    return sum;
-}
-
-int isArmstrong(int n) {
-    return num == countOfDigits(n);
-}
-
 int main() {
-    int number;
+    int n, originalNumber, remainder, result = 0, nDigits = 0;
 
-    printf("Enter a number: ");
+    printf("Enter an integer: ");
     scanf("%d", &n);
 
-    if (isArmstrong(n)) {
-        printf("%d is an Armstrong number.\n", number);
-    } else {
-        printf("%d is not an Armstrong number.\n", number);
+    originalNumber = n;
+
+    while (originalNumber != 0) {
+        originalNumber /= 10;
+        ++nDigits;
     }
+
+    originalNumber = n;
+
+    while (originalNumber != 0) {
+        remainder = originalNumber % 10;
+        result += pow(remainder, nDigits);
+        originalNumber /= 10;
+    }
+
+    if (result == n)
+        printf("%d is an Armstrong number.\n", n);
+    else
+        printf("%d is not an Armstrong number.\n", n);
 
     return 0;
 }
+  
